@@ -1,6 +1,6 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class Subjects1617811872361 implements MigrationInterface {
+export class Subject1617811872361 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
@@ -12,7 +12,7 @@ export class Subjects1617811872361 implements MigrationInterface {
                     isPrimary: true
                 },
                 {
-                    name: 'nome',
+                    name: 'name',
                     type: 'varchar',
                 },
                 {

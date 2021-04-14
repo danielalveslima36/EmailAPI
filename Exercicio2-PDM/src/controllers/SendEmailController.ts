@@ -10,11 +10,13 @@ import SendEmailService from '../services/SendEmailService';
 class SendEmailController{
     async execute(req: Request, res: Response): Promise<Response>{
         const { email, survey_id } = req.body;
+        console.log(JSON.stringify(req.body), email, survey_id)
         const studentRepository = getCustomRepository(StudentRepository);
         const surveyRepository = getCustomRepository(SurveyRepository);
         const surveyStudentRepository = getCustomRepository(SurveyStudentRepository);
 
         const studentExists = await studentRepository.findOne({email});
+        console.log("studentExists: ", studentExists);
         if(!studentExists){
             return res.status(400).json({error: 'does not student exists'})
         }
