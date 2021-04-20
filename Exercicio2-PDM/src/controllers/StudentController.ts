@@ -5,10 +5,11 @@ import { Subject } from '../models/Subject';
 import { StudentRepository } from '../repositories/StudentRepositoriy';
 import { StudentSubjectRepository } from '../repositories/StudentSubjectRepository';
 import { SubjectRepository } from '../repositories/SubjectRepository';
+import bcryptjs from 'bcryptjs';
 
 class StudentController{
     async create(req: Request, res: Response): Promise<Response>{
-        const {name, email, subjects} = req.body;
+        const {name, password, email, subjects} = req.body;
 
         const studentRepository = getCustomRepository(StudentRepository)
         const subjectRepository = getCustomRepository(SubjectRepository)
@@ -21,8 +22,11 @@ class StudentController{
 
         const student = studentRepository.create({
             name,
+            password,
             email,
         });
+
+        student.password = bcryptjs.hashSync(student.password)
         await studentRepository.save(student);
 
         const subjectsArray: Subject[] = [];
@@ -70,4 +74,4 @@ class StudentController{
 
 }
 
-export { StudentController };
+export default new StudentController()

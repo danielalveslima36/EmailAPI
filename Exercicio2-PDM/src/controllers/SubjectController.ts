@@ -18,4 +18,4 @@ class SubjectController {
     }
 }
 
-export {SubjectController}
+export default new SubjectController()

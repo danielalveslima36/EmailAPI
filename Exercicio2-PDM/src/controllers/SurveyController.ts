@@ -15,4 +15,4 @@ class SurveyController{
     }
 }
 
-export { SurveyController };
+export default new SurveyController()
