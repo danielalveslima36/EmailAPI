@@ -4,7 +4,7 @@ import authMiddleware from '../middleware/AuthMiddleware';
 
 const studentRouter = Router()
 
-studentRouter.use(authMiddleware)
+// studentRouter.use(authMiddleware)
 
 // POST /user
 studentRouter.post('/user', StudentController.create)
@@ -13,6 +13,6 @@ studentRouter.post('/user', StudentController.create)
 studentRouter.get('/user', StudentController.list)
 
 // GET /user/:id
-studentRouter.get('/user/:id', StudentController.get)
+studentRouter.get('/user/:id', authMiddleware, StudentController.get)
 
 export default studentRouter
