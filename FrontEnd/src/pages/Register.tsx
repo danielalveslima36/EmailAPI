@@ -16,6 +16,7 @@ const Register = () => {
     const [name, onChangeName] = useState("");
 
     async function registerStudent() {
+        console.log(email,password,name)
         const student = {
             email,
             password,
@@ -32,7 +33,6 @@ const Register = () => {
     }
     function goToLogin(){
         navigation.navigate("Login")
-        navigation.goBack
     }
     return (
         <SafeAreaView style={styles.view}>

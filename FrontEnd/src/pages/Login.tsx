@@ -1,20 +1,30 @@
 //import liraries
-import React from 'react';
+import React, { useContext } from 'react';
 import { useState } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {useNavigation} from '@react-navigation/native'
-import api from '../services/api';
+import { useAuth } from '../context/Authenticate';
 
 // create a component
 const Login = () => {
     const navigation = useNavigation();
+    const {login} = useAuth();
     const [email, onChangeEmail] = useState("");
     const [password, onChangePassword] = useState("");
     
     function handlerCreateUser(){
         navigation.navigate('Register')
+    }
+
+    function handlerListSubjects(){
+        navigation.navigate('ListSubjects')
+    }
+
+    function handlerLogin(email:string, password:string){
+        login(email,password)
+        // handlerListSubjects()
     }
     return (
         <SafeAreaView style={styles.view}>
@@ -30,7 +40,7 @@ const Login = () => {
                 onChangeText={onChangePassword} />
             <View style={styles.buttonLogin}>
                 {/*Button login*/}
-                <Button title="Login" onPress={()=>{}} />
+                <Button title="Login" onPress={()=>{handlerLogin(email,password)}} />
             </View>
             <View style={styles.buttonLogin}>
                 {/*Button cadastrar*/}
