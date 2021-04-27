@@ -21,9 +21,9 @@ class StudentController {
         }
 
         const student = studentRepository.create({
-            name,
-            password,
             email,
+            password,
+            name,
         });
 
         student.password = bcryptjs.hashSync(student.password)
@@ -49,7 +49,7 @@ class StudentController {
 
                 studentSubjectArray.push(studentSubjectItem);
             }
-
+            await studentSubjectRepository.save(studentSubjectArray)
             return res.status(200).json(studentSubjectArray)
         }else return res.status(200).json(student) 
     }

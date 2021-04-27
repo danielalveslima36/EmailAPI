@@ -5,12 +5,17 @@ import SendEmailController from '../controllers/SendEmailController';
 import AnswerController from '../controllers/AnswerController';
 import SubjectController from '../controllers/SubjectController';
 import AuthController from '../controllers/AuthController';
+import authMiddleware from '../middleware/AuthMiddleware';
+
 
 
 const router = Router();
 
 // POST /subject
-router.post('/subject', SubjectController.create)
+router.post('/subject', authMiddleware, SubjectController.create)
+
+// GET /subject
+router.get('/subject/:id', authMiddleware, SubjectController.get)
 
 //POST /auth
 router.post('/auth', AuthController.authenticate)
