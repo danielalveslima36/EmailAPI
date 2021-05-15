@@ -35,8 +35,9 @@ class SubjectController {
         if (!subjects) {
             return res.status(400).json({ error: 'Subjects does not exists' })
         } else {
+            const subjectsFiltered = subjects.filter(s => s.student_id === id)
             const subjectsArray: Subject[] = [];
-            for (const subject of subjects) {
+            for (const subject of subjectsFiltered) {
                 const aux = await subjectRepository.findOne(subject.subject_id)
                 subjectsArray.push(aux)
             }
