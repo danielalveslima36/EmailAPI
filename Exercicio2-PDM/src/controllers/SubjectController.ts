@@ -7,15 +7,21 @@ import { Subject } from '../models/Subject';
 class SubjectController {
 
     async create(req: Request, res: Response): Promise<Response> {
-        const { name, workload } = req.body;
+        const { name, workload, student_id } = req.body;
 
         const subjectRepository = getCustomRepository(SubjectRepository)
+        const studentSubjectRepository = getCustomRepository(StudentSubjectRepository)
         const subject = subjectRepository.create({
             name,
             workload
         });
         await subjectRepository.save(subject)
 
+        const studentSubjectItem = studentSubjectRepository.create({
+            subject_id: subject.id,
+            student_id
+        });
+        studentSubjectRepository.save(studentSubjectItem)
         return res.status(200).json(subject)
     }
 

@@ -10,6 +10,7 @@ import { sub } from 'react-native-reanimated';
 import { useAuth } from '../context/Authenticate';
 import api from '../services/api';
 import styles from "../styles/ListSubjectsStyle";
+import {useNavigation} from '@react-navigation/native';
 
 interface Subject {
     id: number;
@@ -20,6 +21,7 @@ interface Subject {
 // create a component
 const ListSubjects = () => {
     const { student } = useAuth();
+    const navigation = useNavigation();
     const {logout} = useAuth();
     const [subjects, onChangeSubjects] = useState<Subject[]>([])
     const [modalVisible, onChangeModal] = useState(false);
@@ -30,6 +32,11 @@ const ListSubjects = () => {
             onChangeSubjects(response.data);
         })
     });
+
+
+    function handlerCreateSubject() {
+        navigation.navigate('RegisterSubject')
+    }
 
     return (
         <ScrollView style={styles.content}>
@@ -46,6 +53,12 @@ const ListSubjects = () => {
                 </Pressable>
             </View>
             <Divider style={styles.divider} />
+            <Pressable
+                    style={[styles.button, styles.buttonClose]}
+                    onPress={()=> handlerCreateSubject() }
+                >
+                    <Text style={styles.textStyle}>Adicionar Disciplina</Text>
+                </Pressable>
             {
                 subjects.map(subject =>
                     <View key={subject.id} style={styles.itemProductContainer}>

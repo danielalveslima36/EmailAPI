@@ -7,6 +7,7 @@ import Login from '../pages/Login';
 import Register from '../pages/Register'
 import RoutesMain from './RoutesMain';
 import ListSubjects from '../pages/ListSubjects';
+import RegisterSubject from '../pages/RegisterSubject';
 
 const { Navigator, Screen } = createStackNavigator();
 // create a component
@@ -14,6 +15,7 @@ const RoutesApp = () => {
     return (
         <Navigator>
             <Screen name="ListSubjects" component={ListSubjects}/>
+            <Screen name="RegisterSubject" component={RegisterSubject}/>
         </Navigator>
     );
 };
