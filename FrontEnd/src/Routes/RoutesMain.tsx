@@ -8,7 +8,6 @@ import RoutesApp from './Routes.app';
 // create a component
 const RoutesMain = () => {
     const {signed} = useAuth();
-    console.log(signed)
     return signed ? <RoutesApp/> : <RoutesAuth/>
 };
 

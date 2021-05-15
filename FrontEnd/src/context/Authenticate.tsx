@@ -29,7 +29,7 @@ const AuthenticateContext: React.FC = ({ children }) => {
 
     useEffect(() => {
         async function loadStorage() {
-            const studentStorage = await AsyncStorage.getItem('Auth:Student');
+            const studentStorage = await AsyncStorage.getItem('Auth:User');
             const tokenStorage = await AsyncStorage.getItem('Auth:Token');
             if (studentStorage && tokenStorage) {
                 api.defaults.headers.common['Authorization'] = `Bearer ${tokenStorage}`;
